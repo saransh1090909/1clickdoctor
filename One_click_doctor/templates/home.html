@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+hi everybody
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+{% else %}
+  <p> Welcome to if are a doctor please login</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+<head><style>
+div.ve {
+    font-size: 70px;
+    }
+div.t {
+    font-size: 80px;
+    
+}        
+</style>
+    <div class="t"><b>Best Remedies<b></div>
+
+
+<div id='tweets'>
+    Replace me
+</div>
+<div class="t" >Best Remedies</div>
+<div class="container-fluid container rounded">
+    <h3>High BP</h3>
+    <p>
+      Have amla with milk daily is believed to lower blood pressure.
+       This should ideally be taken early in the morning.
+    </p>
+
+</div>
+
+<script>
+const tweetsElemeent = document.getElementById("tweets")
+tweetsElemeent.innerHTML = 'Loading...'
+
+const xhr = new XMLHttpRequest()
+const method = 'GET'
+const url = "/home"
+const responseType = "json"
+
+xhr.responseType = responseType
+xhr.open(method, url)
+xhr.onload = function() {
+    console.log(xhr.response)
+    const serverResponse = xhr.response
+    var listedItems = xhr.response.response
+    console.log(listedItems)
+}
+xhr.send()
+
+</script>
+
+
+{% endblock %}
+
+
+
+{% block title %}Home{% endblock %}
+

@@ -1,0 +1,289 @@
+{% extends 'base.html' %}
+
+{% block title %}Acupressure{% endblock title %}
+
+{% block body%}
+<head><style>
+div.a {
+    font-size: 70px;
+    }
+div.h {
+    font-size: 80px;
+    
+}        
+</style>
+
+<div class="a">
+  <b>#Accupresure</b>
+  <style>
+  *{
+    padding: 0;
+    margin: 0;}
+     
+  body{
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    background-color: #e9e9e9;
+}
+  .content-wrapper {
+    width: 80%;
+    margin: 4% 10% 5% 10%;
+  }
+  .content-wrapper img {
+    width: 100%;
+  }
+  .text-wrapper {
+    width: 100%;
+    position: relative;
+    margin-top: -40%;
+  }
+  .text-wrapper h2 {
+    text-align: start;
+    color: #f80000;
+    font-size: 10vw;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  .text-wrapper h4 {
+    text-align: start;
+    color: #ff6600;
+    font-size: 3vw;
+    font-family: 'Courier New', Courier, monospace;
+  }
+</style>
+
+<body>
+  <div class="content-wrapper">
+    <img src="https://image.shutterstock.com/image-vector/hand-reflexology-chart-acupuncture-points-260nw-1270690045.jpg">
+    <div class="text-wrapper">
+      <h2><b>#stress</b></h2>
+      <h4><b></b></h4>
+    </div>  
+  </div>
+<div class="container">
+
+</div>
+</body>
+
+
+
+</div>
+<div class="row text-center">
+<h2 style="color:rgb(247, 189, 0)">Accupresure points to relif stress</h2>
+<h3 style="color: #5a0505;">1. You can find this pressure point two-finger widths under the area where your arm meets your chest. Using the tip of your index finger, apply moderate 
+  pressure on either one side or both sides together to increase blood circulation and help balance unstable emotions.</h3>
+<h4>____________________________________________________________</h4>
+  <h3>2. This point is located on the inside of your wrist, in the crease, on the side where your pinky finger is. This point is great if you have trouble falling asleep due to anxiety or if you 
+  wake up  the night feeling anxious. Massaging this 
+  point calms the heart and anxiety along with it.</h3>
+
+
+
+</div>
+  
+
+    <!-- <head><style>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.feed{
+    flex: 0.5;
+    border-right: 1px solid var(--oneclick-background);
+    min-height: fit-content;
+    overflow-x: scroll;
+
+}
+.tweetbox_input img {
+    border-radius: 50%;
+    height: 40px;
+}
+.tweetBox{
+    padding-bottom: 10px;
+    border-bottom: 8px solid var(--oneclick-background);
+    padding-right: 10px;
+}
+.tweetBox form {
+    display: flex;
+    flex-direction: column;
+}
+.tweetbox_input {
+    display: flex;
+    padding: 20px;   
+}
+.tweetbox_input input {
+    flex: 1;
+    margin-left: 20px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+}</style> -->
+
+
+<!-- <div class='row text-center'>
+  <div class='col'>
+     <h2>Best Remedies</h2>
+    </div>
+</div> -->
+
+<!-- <div class='row mb-3 px-lg-3'>
+    <div class='col-md mx-auto px-3'>
+        <form class="form" id="tweet-create-form" method="POST" action="/create-tweet">
+            {% csrf_token %}
+            <input type="hidden" value="/" name="next" />
+            <textarea class="form-control" name="content" placeholder="Your Post..." cols="25" rows="6"></textarea> 
+            <button  type="submit" class="btn btn-primary">Post</button>
+        </form>
+    </div>
+
+</div>
+
+
+
+<div class='container'>
+<div class='row-cols-4' id='tweets'>
+    Loading...
+    
+</div>
+
+<script>
+
+function handleTweetCreateFormDidSumbit(event)  {
+    event.preventDefaut()
+    const myForm = event.target
+    const myFormData = new FormData(myForm)
+    const url = myForm.getAttribute("action")
+    const method = myForm.getAttribute("method")
+    const xhr = new XMLHttpRequest()
+    xhr.open(method, url)
+    xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")
+    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest")
+    xhr.onload = function() {
+        const serverResponse = xhr.response
+        //console.log(serverResponse)
+        const tweetsEl = document.getElementById("tweets")
+        loadTweets(tweetsEl)
+
+     //console.log(url, method)
+            
+        }
+    //console.log(event)
+    xhr.send(myFormData)
+}
+
+const tweetCreateFormEl = document.getElementById("tweet-create-form")
+tweetCreateFormEl.addEventListener("submit", handleTweetCreateFormDidSumbit)
+
+
+const tweetsEl = document.getElementById("tweets")
+
+function loadTweets(tweetsElement) {
+    const xhr = new XMLHttpRequest()
+    const method = 'GET'
+    const url = "/home"
+    const responseType = "json"
+
+    xhr.responseType = responseType
+    xhr.open(method, url)
+    xhr.onload = function() {
+        console.log(xhr.response)
+        const serverResponse = xhr.response
+        const listedItems = xhr.response.response
+        var finalTweetStr = ""
+        var i ;
+        for (i=0;i<listedItems.length; i++) {
+          var tweetObj = listedItems[i]
+          var currentItem = formatTweetElement(tweetObj)
+          finalTweetStr += currentItem
+        }
+        tweetsElement.innerHTML = finalTweetStr
+          //console.log(listedItems.length)
+    }
+    xhr.send()
+}
+
+loadTweets(tweetsEl)
+
+
+function handleDidLike(tweet_id, currentCount) {
+  console.log(tweet_id, currentCount)
+  currentCount++
+  return 
+}
+
+function LikeBtn(tweet) {
+  return "<button class='btn btn-primary btn-sm' onclick=handleDidLike(" + 
+  tweet.id + "," + tweet.likes + ")>" + tweet.likes + "Likes</button>"
+}
+
+function formatTweetElement(tweet){
+    var formattedTweet = "<div class='col-12 border-top border-bottom border rounded-3 py-3 mb-2 tweet' id ='tweet-" + tweet.id 
+    + "'><p>" + "<p>" + tweet.content +
+        "</p><div class='btn-group'>" + LikeBtn(tweet) + 
+      
+        "</div></div>"
+        
+    return formattedTweet
+}
+
+
+</script>
+
+
+
+
+
+
+<div class="feed">
+    <div class="feed_header">
+
+    </div>
+</div>
+
+<div class="tweetBox">
+    <form>
+       <div class="tweetbox_input">
+        <img src="" alt="">
+        <input type="text" placeholder="enter your suggesions">
+       </div> 
+
+       <button class="tweetbox_tweetButton">post
+        
+       </button>
+    </form>  -->
+</head>
+</div>
+</html>
+
+
+
+ <div class="footer">
+<section class="container-fluid">
+  <!-- Footer -->
+  <footer class="text-center text-white" style="background-color: #0a4275;">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: CTA -->
+      <section class="">
+        <p class="d-flex justify-content-center align-items-center">
+          <span class="me-3">Post your artical</span>
+          <button type="button" class="btn btn-outline-light btn-rounded">
+            Post!
+          </button>
+        </p>
+      </section>
+      <!-- Section: CTA -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2022 Copyright:
+      <a class="text-white" href="/Article">One Click Doctor.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+</div>
+
+
+{% endblock body %}

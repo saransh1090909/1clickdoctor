@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.feed{
+    flex: 0.5;
+    border-right: 1px solid var(--oneclick-background);
+    min-height: fit-content;
+    overflow-x: scroll;
+
+}
+.tweetbox_input img {
+    border-radius: 50%;
+    height: 40px;
+}
+.tweetBox{
+    padding-bottom: 10px;
+    border-bottom: 8px solid var(--oneclick-background);
+    padding-right: 10px;
+}
+.tweetBox form {
+    display: flex;
+    flex-direction: column;
+}
+.tweetbox_input {
+    display: flex;
+    padding: 20px;   
+}
+.tweetbox_input input {
+    flex: 1;
+    margin-left: 20px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{%block body%}<html lang="en">
+<form>
+  <div class="container">
+    <h1 class="heading">Login</h1>
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="container">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="container ">
+    <label for="name">Enter your name</label>
+    <input type="username" class="form-control" id="exampleInputname1" placeholder="name">
+
+  </div>
+
+   <div class="container h-50 w-100">
+    <label for="name">enter your article</label>
+    <input  type="article" class="form-control" id="exampleInputname1" placeholder="article">
+
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% if user.is_authenticated %}
+<a href="{% url 'Helpful_Herbs' %}">Welcome</a>
+{% endif%}
+
+{%endblock body%}
+</html>

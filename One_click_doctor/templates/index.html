@@ -1,0 +1,310 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block body %}
+
+<head><style>
+div.a {
+    font-size: 55px;
+    }
+div.h {
+    font-size: 80px;
+    
+}        
+</style>
+
+
+<div class='row text-center'>
+  <div class='col'>
+  <div class="h">Best Remedies</div>
+     <h1></h1>
+    </div>
+
+<style>
+  *{
+    padding: 0;
+    margin: 0;}
+     
+  body{
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    background-color: #ffd6d8;
+}
+  .content-wrapper {
+    width: 80%;
+    margin: 4% 10% 5% 10%;
+  }
+  .content-wrapper img {
+    width: 100%;
+  }
+  .text-wrapper {
+    width: 100%;
+    position: relative;
+    margin-top: -40%;
+  }
+  .text-wrapper h2 {
+    text-align: start;
+    color: #f80000;
+    font-size: 10vw;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  .text-wrapper h4 {
+    text-align: start;
+    color: #ff6600;
+    font-size: 3vw;
+    font-family: 'Courier New', Courier, monospace;
+  }
+</style>
+
+<body>
+  <div class="content-wrapper">
+    <img src="https://source.unsplash.com/random/1000×800/?herbs">
+    <div class="text-wrapper">
+      <h2><b>#Garlic-</b></h2>
+      <h4><b></b></h4>
+    </div>  
+  </div>
+<div class="container">
+<h2></h2>
+.
+</div>
+</body>
+
+
+
+
+    <div class=" row border rounded text-lg-start px-3">
+      <div style="color:red">
+      <div class="a"><b>Garlic-</b></div>
+      </div>
+      <p>Some studies show that people who eat more garlic are less likely to 
+        get certain types of cancer (garlic supplements don’t seem to have the same effect). It also may lower blood cholesterol and blood pressure levels, but it doesn’t seem to help that much.</p>
+      <h2 style="color:rgb(168, 0, 247)">FOR:</h2>
+      <h2>_BP-</h2>
+      <h2>_Cholestrol-</h2>
+      <a class="col " href="/top_reasons">click here to know reasons </a>
+      </div>
+</div>
+
+<div class='row mb-3 px-lg-3'>
+    <div class='col-md mx-auto col-10'>
+      <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.dropbtn {
+  background-color: #4c04aa;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: 4px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 1200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 20px 30px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+</style>
+</head>
+<body>
+<h4 style="color:rgb(252, 154, 8)">Weekly Updates</h4>
+<h2>Suggestion</h2>
+<p>Move the mouse over the button to open the dropdown menu.</p>
+
+<!-- <div class="dropdown">
+  <button class="dropbtn">suggestion</button>
+  <div class="dropdown-content"> -->
+          <form class="form" id="tweet-create-form" method="POST" action="/create-tweet">
+              {% csrf_token %}
+              <input type="hidden" value="/" name="next" />
+              <textarea class="form-control" name="content" placeholder="Ask questions" cols="25" rows="4"></textarea> 
+              <button  type="submit" class="btn btn-primary">Ask</button>
+          </form>
+      </div>
+
+  </div>
+
+
+
+  <div class='container'>
+  <div class='row' id='tweets'>
+      Loading...
+      
+  </div>
+
+  <script>
+
+  function handleTweetCreateFormDidSumbit(event)  {
+      event.preventDefaut()
+      const myForm = event.target
+      const myFormData = new FormData(myForm)
+      const url = myForm.getAttribute("action")
+      const method = myForm.getAttribute("method")
+      const xhr = new XMLHttpRequest()
+      xhr.open(method, url)
+      xhr.setRequestHeader("HTTP_X_REQUESTED_WITH", "XMLHttpRequest")
+      xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest")
+      xhr.onload = function() {
+          const serverResponse = xhr.response
+          //console.log(serverResponse)
+          const tweetsEl = document.getElementById("tweets")
+          loadTweets(tweetsEl)
+
+      //console.log(url, method)
+              
+        }
+      console.log(event)
+      xhr.send(myFormData)
+  }
+
+  const tweetCreateFormEl = document.getElementById("tweet-create-form")
+  tweetCreateFormEl.addEventListener("submit", handleTweetCreateFormDidSumbit)
+
+
+  const tweetsEl = document.getElementById("tweets")
+
+  function loadTweets(tweetsElement) {
+      const xhr = new XMLHttpRequest()
+      const method = 'GET'
+      const url = "/home"
+      const responseType = "json"
+
+      xhr.responseType = responseType
+      xhr.open(method, url)
+      xhr.onload = function() {
+          //console.log(xhr.response)
+          const serverResponse = xhr.response
+          const listedItems = xhr.response.response
+          var finalTweetStr = ""
+          var i ;
+          for (i=0;i<listedItems.length; i++) {
+            var tweetObj = listedItems[i]
+            var currentItem = formatTweetElement(tweetObj)
+            finalTweetStr += currentItem
+          }
+          tweetsElement.innerHTML = finalTweetStr
+            //console.log(listedItems.length)
+      }
+      xhr.send()
+  }
+
+  loadTweets(tweetsEl)
+
+
+  function handleDidLike(tweet_id, currentCount) {
+    console.log(tweet_id, currentCount)
+    currentCount++
+    return 
+  }
+
+  function LikeBtn(tweet) {
+    return "<button class='btn btn-primary btn-sm' onclick=handleDidLike(" + 
+    tweet.id + "," + tweet.likes + ")>" + tweet.likes + "Views</button>"
+  }
+
+  function formatTweetElement(tweet){
+      var formattedTweet = " <div class='dropdown'>  <button class='dropbtn'> suggestions </button>  <div class='dropdown-content'>  <div class='col-12 border-top border-bottom border rounded-3 py-3 mb-2 tweet' id ='tweet-" + tweet.id 
+      + "'><p>" + "<p>" + tweet.content +
+          "</p><div class='btn-group'>" + LikeBtn(tweet) + 
+        
+          "</div></div>"
+      return formattedTweet
+  }
+
+
+  </script>
+
+</div>
+<div class=" row border rounded text-lg-start px-3">
+      <div style="color:rgb(253, 237, 17)">
+      <div class="a"><b>Problem</b></div>
+      <h2 style="color:rgb(168, 0, 247)">Sugar</h2>
+      </div>
+      <h4>The best solution to low high BP is to drink Juice</h4>
+      <h4 style="color:rgb(0, 198, 247)">These are very benificial- </h4>
+      <h2>_Jamun seed</h2>
+      <h2>_Mango leaves</h2>
+      
+      <a class="col " href="/top_reasons">click here to know reasons </a>
+      <h4 style="color:rgb(252, 154, 8)">Weekly Updates</h4>
+      </div>
+
+
+
+
+
+<div class="container-fluid"><div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="https://source.unsplash.com/random/1000×800/?aurveda
+
+" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="https://source.unsplash.com/random/1000×800/?herbs" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="https://source.unsplash.com/random/1000×800/?trees" alt="Third slide">
+    </div>
+  </div>
+
+  <div class="footer">
+<section class="container-fluid">
+  <!-- Footer -->
+  <footer class="text-center text-white" style="background-color: #0a4275;">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: CTA -->
+      <section class="">
+        <p class="d-flex justify-content-center align-items-center">
+          <span class="me-3">Post your artical</span>
+          <button type="button" class="btn btn-outline-light btn-rounded">
+            Post!
+          </button>
+        </p>
+      </section>
+      <!-- Section: CTA -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2022 Copyright:
+      <a class="text-white" href="/Article">One Click Doctor.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+</div>
+</div></div></div>
+
+
+
+{% endblock body%}
+  
+
+ 
